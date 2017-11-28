@@ -1039,15 +1039,15 @@ class VirtualizedList extends React.PureComponent<Props, State> {
         this.props.onEndReachedThreshold * visibleLength / 2;
       hiPri =
         Math.min(distTop, distBottom) < 0 ||
-        (velocity < -2 && distTop < scrollingThreshold) ||
-        (velocity > 2 && distBottom < scrollingThreshold);
+        (distTop < scrollingThreshold) ||
+        (distBottom < scrollingThreshold);
     }
     // Only trigger high-priority updates if we've actually rendered cells,
     // and with that size estimate, accurately compute how many cells we should render.
     // Otherwise, it would just render as many cells as it can (of zero dimension),
     // each time through attempting to render more (limited by maxToRenderPerBatch),
     // starving the renderer from actually laying out the objects and computing _averageCellLength.
-    if (hiPri && this._averageCellLength) {
+    if (hiPri && (this._averageCellLength || this.props.getItemLayout)) {
       // Don't worry about interactions when scrolling quickly; focus on filling content as fast
       // as possible.
       this._updateCellsToRenderBatcher.dispose({abort: true});
