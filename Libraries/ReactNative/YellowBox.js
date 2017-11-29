@@ -263,7 +263,7 @@ const WarningInspector = ({
         <Text style={styles.inspectorCountText}>{countSentence}</Text>
         <TouchableHighlight onPress={toggleStacktrace} underlayColor="transparent">
           <Text style={styles.inspectorButtonText}>
-            {stacktraceVisible ? '\u{25BC}' : '\u{25B6}'} Stacktrace
+            {stacktraceVisible ? '\u25BC' : '\u25B6'} Stacktrace
           </Text>
         </TouchableHighlight>
       </View>
